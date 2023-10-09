@@ -28,7 +28,9 @@ app.get("/contact", (req, res) => {
   res.sendFile(___dirname + "/contact.html");
 });
 
-app.get("/add-show-case-image", (req, res) => {});
+app.get("/add-show-case-image", (req, res) => {
+    res.redirect()
+});
 
 app.listen(PORT, () => {
   console.log("Running app...");
