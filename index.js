@@ -22,15 +22,15 @@ app.get("/show-case-images", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(___dirname + "/index.html");
+  res.sendFile(___dirname + "/public/index.html");
 });
 
 app.get("/about", (req, res) => {
-  res.sendFile(___dirname + "/about.html");
+  res.sendFile(___dirname + "/public/about.html");
 });
 
 app.get("/contact", (req, res) => {
-  res.sendFile(___dirname + "/contact.html");
+  res.sendFile(___dirname + "/public/contact.html");
 });
 
 app.get("/add-show-case-image", (req, res) => {
