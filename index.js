@@ -1,5 +1,4 @@
 import express from "express";
-import path from "path";
 import fs from "fs";
 import { ___dirname } from "./helper.js";
 import { getShowCaseImagesUrl } from "./showcase_image.js";
@@ -7,14 +6,7 @@ import { getShowCaseImagesUrl } from "./showcase_image.js";
 const PORT = process.env.PORT || 8010;
 const app = express();
 
-// app.use("/css", express.static(path.join(___dirname, "css")));
-// app.use("/js", express.static(path.join(___dirname, "js")));
-// app.use("/img", express.static(path.join(___dirname, "img")));
-// app.use("/fontawesome", express.static(path.join(___dirname, "fontawesome")));
-
-app.use("/", express.static(path.join(___dirname)));
-
-// app.use(express.json());
+app.use(express.static("public"));
 
 app.get("/show-case-images", (req, res) => {
   const data = getShowCaseImagesUrl(`${req.protocol}://${req.headers.host}`);
