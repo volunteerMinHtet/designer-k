@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "file": ["./"],
+  "files": ["./"],
   "builds": [
     {
       "src": "./index.js",
