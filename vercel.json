@@ -3,11 +3,11 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.js"
+      "dest": "index.js"
     },
     {
       "src": "/public/(.*)",
-      "dest": "/public"
+      "dest": "public"
     }
   ]
 }
