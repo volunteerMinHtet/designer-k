@@ -11,6 +11,10 @@ app.use("/js", express.static(path.join(___dirname, "js")));
 app.use("/img", express.static(path.join(___dirname, "img")));
 app.use("/fontawesome", express.static(path.join(___dirname, "fontawesome")));
 
+// app.use("/", express.static(path.join(___dirname)));
+
+// app.use(express.json());
+
 app.get("/show-case-images", (req, res) => {
   const data = getShowCaseImagesUrl(`${req.protocol}://${req.headers.host}`);
   res.json(data);
