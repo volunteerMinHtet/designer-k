@@ -7,12 +7,12 @@ import { getShowCaseImagesUrl } from "./showcase_image.js";
 const PORT = process.env.PORT || 8010;
 const app = express();
 
-app.use("/css", express.static(path.join(___dirname, "css")));
-app.use("/js", express.static(path.join(___dirname, "js")));
-app.use("/img", express.static(path.join(___dirname, "img")));
-app.use("/fontawesome", express.static(path.join(___dirname, "fontawesome")));
+// app.use("/css", express.static(path.join(___dirname, "css")));
+// app.use("/js", express.static(path.join(___dirname, "js")));
+// app.use("/img", express.static(path.join(___dirname, "img")));
+// app.use("/fontawesome", express.static(path.join(___dirname, "fontawesome")));
 
-// app.use("/", express.static(path.join(___dirname)));
+app.use("/", express.static(path.join(___dirname)));
 
 // app.use(express.json());
 
