@@ -6,6 +6,12 @@ import { getShowCaseImagesUrl } from "./showcase_image.js";
 const PORT = process.env.PORT || 8010;
 const app = express();
 
+app.use((req, res, next) => {
+  return res.send(
+    `NODE_ENV: ${process.env.NODE_ENV}\nPORT: ${process.env.PORT}`
+  );
+});
+
 app.use("/css", express.static(path.join(___dirname, "css")));
 app.use("/js", express.static(path.join(___dirname, "js")));
 app.use("/img", express.static(path.join(___dirname, "img")));
