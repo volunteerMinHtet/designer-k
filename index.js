@@ -3,7 +3,7 @@ import path from "path";
 import { ___dirname } from "./helper.js";
 import { getShowCaseImagesUrl } from "./showcase_image.js";
 
-const PORT = 8010;
+const PORT = process.env.PORT || 8010;
 const app = express();
 
 app.use("/css", express.static(path.join(___dirname, "css")));
@@ -29,7 +29,7 @@ app.get("/contact", (req, res) => {
 });
 
 app.get("/add-show-case-image", (req, res) => {
-    res.redirect()
+  res.redirect();
 });
 
 app.listen(PORT, () => {
