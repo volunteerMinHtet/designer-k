@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { ___dirname } from "./helper.js";
 import { getShowCaseImagesUrl } from "./showcase_image.js";
 
@@ -35,6 +36,25 @@ app.get("/contact", (req, res) => {
 app.get("/add-show-case-image", (req, res) => {
   res.redirect();
 });
+
+app.get("/test", (req, res) =>
+  //   res.send(`PORT: ${process.env.PORT}\nDIR: ${___dirname}`)
+  res.json({
+    PORT: PORT,
+    PARENT_DIR: fs.readdirSync("../"),
+    PROJECT_DIR: fs.readdirSync("./", { withFileTypes: true }).map((item) => {
+      if (item.isDirectory()) {
+        return {
+          [item.name]: fs
+            .readdirSync(item.name, { withFileTypes: true })
+            .map((item) => item.name),
+        };
+      } else {
+        return item.name;
+      }
+    }),
+  })
+);
 
 app.listen(PORT, () => {
   console.log("Running app...");
