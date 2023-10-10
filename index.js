@@ -13,7 +13,7 @@ app.use("/fontawesome", express.static(path.join(___dirname, "fontawesome")));
 
 // app.use("/", express.static(path.join(___dirname)));
 
-app.use(express.json());
+// app.use(express.json());
 
 app.get("/show-case-images", (req, res) => {
   const data = getShowCaseImagesUrl(`${req.protocol}://${req.headers.host}`);
