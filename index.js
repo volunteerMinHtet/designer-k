@@ -14,8 +14,13 @@ app.use("/fontawesome", express.static(path.join(___dirname, "fontawesome")));
 app.use((req, res, next) => {
   console.log("log from app middleware");
   console.log("header", req.headers);
-  console.log("app", (app._router.stack));
+  console.log("app", app._router.stack);
   console.log("URL", `${req.protocol}://${req.headers.host}${req.url}`);
+
+  res.json({
+    data: app._router.stack,
+    url: `${req.protocol}://${req.headers.host}${req.url}`,
+  });
   //   console.log("res", res);
   //   console.log("next", next);
   //   console.error(err);
