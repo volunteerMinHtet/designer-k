@@ -7,8 +7,7 @@ const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 8010;
 const app = express();
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.get("/api/show-case-images", (req, res) => {
   const data = getShowCaseImagesUrl(`${req.protocol}://${req.headers.host}`);
@@ -16,7 +15,7 @@ app.get("/api/show-case-images", (req, res) => {
 });
 
 app.get("/add-show-case-image", (req, res) => {
-//   res.redirect();
+  //   res.redirect();
 });
 
 app.get("/test", (req, res) =>
@@ -36,6 +35,9 @@ app.get("/test", (req, res) =>
     }),
   })
 );
+
+app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(PORT, () => {
   console.log("Running app...");

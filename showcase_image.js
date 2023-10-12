@@ -7,7 +7,7 @@ function retrieveShowCaseImagesFiles() {
 function getShowCaseImagesUrl(baseServerUrl) {
   const fileNames = retrieveShowCaseImagesFiles();
   const showCaseImageUrls = fileNames.map(
-    (fileName) => `${baseServerUrl}/img/projects/${fileName}`
+    (fileName) => `${baseServerUrl}/public/img/projects/${fileName}`
   );
   return showCaseImageUrls;
 }
