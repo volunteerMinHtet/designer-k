@@ -6,9 +6,12 @@ function retrieveShowCaseImagesFiles() {
 
 function getShowCaseImagesUrl(baseServerUrl) {
   const fileNames = retrieveShowCaseImagesFiles();
-  const showCaseImageUrls = fileNames.map(
-    (fileName) => `${baseServerUrl}/public/img/projects/${fileName}`
-  );
+  const showCaseImageUrls = fileNames.map((fileName) => {
+    return {
+      url: `${baseServerUrl}/public/img/projects/${fileName}`,
+      file_name: fileName,
+    };
+  });
   return showCaseImageUrls;
 }
 

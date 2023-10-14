@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/templatemo-style.css">
+
+    <style>
+        @keyframes image-zoom-out {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.5);
+            }
+        }
+
+        .animation-image {
+            object-fit: contain;
+        }
+
+        .animation-image:hover {
+            object-fit: contain;
+            animation: 0.7s linear .1s image-zoom-out;
+            animation-fill-mode: forwards;
+        }
+    </style>
 </head>
 
 <body>
@@ -57,7 +79,7 @@
             </h2>
         </div>
         <div class="row tm-mb-90 tm-gallery min-vh-100" id="showcase_container"></div> <!-- row -->
-    </div> <!-- container-fluid, tm-container-content -->
+    </div>
 
     <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
         <div class="container-fluid tm-container-small">
@@ -107,9 +129,9 @@
 
             $('body').addClass('loaded');
 
-            showCaseImageUrls?.map(url => {
+            showCaseImageUrls?.map(item => {
                 var showCaseContainer = document.querySelector('#showcase_container')
-                var showCase = createShowCaseImage(url, "Hello", "1111", "120302")
+                var showCase = createShowCaseImage(item.url, "Hello", "1111", "120302")
                 showCaseContainer.appendChild(showCase)
             })
         });
@@ -122,30 +144,38 @@
 
         function createShowCaseImage(imgSrc, figCaption, dateTimestamp, viewCount) {
             var container = document.createElement('div')
-            container.className = "col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5"
             var figure = document.createElement('figure')
-            figure.className = "effect-ming tm-video-item"
             var image = document.createElement('img')
+            var figcaptionContainer = document.createElement('figcaption')
+            var figcaptionText = document.createElement('h2')
+            var extraTextContainer = document.createElement('div')
+            var extraTextDate = document.createElement('span')
+            var extraTextViewCount = document.createElement('span')
+
+            container.className = "col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5"
+
+            // figure.className = "effect-ming tm-video-item"
+
             image.src = imgSrc
             image.style.aspectRatio = 1 / 1
-            image.className = 'img-fluid'
-            var figcaptionContainer = document.createElement('figcaption')
+            image.className = 'animation-image img-fluid'
+
             figcaptionContainer.className = 'd-flex align-items-center justify-content-center'
-            var figcaptionText = document.createElement('h2')
             figcaptionText.innerText = figCaption
-            var extraTextContainer = document.createElement('div')
+
             extraTextContainer.className = "d-flex justify-content-between tm-text-gray"
-            var extraTextDate = document.createElement('span')
             extraTextDate.innerText = dateTimestamp
             extraTextDate.className = 'tm-text-gray-light'
-            var extraTextViewCount = document.createElement('span')
             extraTextViewCount.innerText = `${viewCount} views`
 
             container.appendChild(figure)
             container.appendChild(extraTextContainer)
+
             figure.appendChild(image)
-            figure.appendChild(figcaptionContainer)
+            // figure.appendChild(figcaptionContainer)
+
             figcaptionContainer.appendChild(figcaptionText)
+
             extraTextContainer.appendChild(extraTextDate)
             extraTextContainer.appendChild(extraTextViewCount)
 
