@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            renderShowCaseImages()
+        })
+
+        async function renderShowCaseImages() {
+            const contentContainer = document.querySelector('#content')
+            const showCaseImages = await fetchShowCaseImages()
+            showCaseImages.map(item => contentContainer.appendChild(createShowCaseImage(item.url, item.file_name)))
+        }
+
+        async function fetchShowCaseImages() {
+            const response = await fetch("/api/show-case-images")
+            const json = await response.json()
+            return json
+        }
+
+        function createShowCaseImage(imgSrc, fileName = 'Unknown File') {
+            const containerElement = document.createElement('div')
+            const imageElement = document.createElement('img')
+            const contentContainerElement = document.createElement('div')
+            const fileNameElement = document.createElement('p')
+            const deleteFormElement = document.createElement('form')
+            const deleteBtnElement = document.createElement('button')
+
+            containerElement.style.border = "1px solid red"
+            containerElement.style.width = "auto"
+            containerElement.style.padding = "16px"
+
+            imageElement.src = imgSrc
+            imageElement.style.width = "100%"
+            imageElement.style.height = "150px"
+            imageElement.style.objectFit = "contain"
+
+            contentContainerElement.style.display = 'flex'
+            contentContainerElement.style.flexDirection = 'row'
+            contentContainerElement.style.justifyContent = 'space-between'
+
+            fileNameElement.innerText = fileName
+
+            deleteFormElement.action = `/delete-show-case-image/${fileName}`
+            deleteFormElement.method = 'post'
+            deleteFormElement.style.alignSelf = 'center'
+
+
+            deleteBtnElement.innerText = "Delete"
+            deleteBtnElement.style.color = '#ffffff'
+            deleteBtnElement.style.backgroundColor = 'red'
+            deleteBtnElement.type = 'submit'
+
+            deleteFormElement.appendChild(deleteBtnElement)
+
+            contentContainerElement.appendChild(fileNameElement)
+            contentContainerElement.appendChild(deleteFormElement)
+
+            containerElement.appendChild(imageElement)
+            containerElement.appendChild(contentContainerElement)
+
+            return containerElement
+        }
+    </script>
+</head>
+
+<body>
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+        <h1>Showcase Images</h1>
+        <a href="/add-show-case-image">Add showcase image</a>
+    </div>
+
+    <div id="content" style="display: grid; grid-template-columns: repeat(4, 1fr)"></div>
+</body>
+
+</html>

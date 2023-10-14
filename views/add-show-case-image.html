@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Show Case Image</title>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+            const errorMessageElement = document.querySelector('#error_message')
+            const errorMsg = await fetchServerErrorMessage()
+            errorMessageElement.textContent = errorMsg
+        })
+
+        async function fetchServerErrorMessage() {
+            const response = await fetch('/api/error-message')
+            const json = await response.json()
+            return json?.error_msg
+        }
+    </script>
+</head>
+
+<body>
+    <h3 id="error_message" style="color: red;"></h3>
+    <form action="upload-show-case-image" method="post" enctype="multipart/form-data">
+        <div style="display: flex; flex-direction: column; margin-bottom: 8px;">
+            <label>File name</label>
+            <input type="text" name="file_name" style="width: 300px;" placeholder="eg. social-1 [no need extension]" />
+        </div>
+
+        <div style="display: flex; flex-direction: column; margin-bottom: 8px;">
+            <label>Image</label>
+            <input type="file" name="image" accept="image/*" />
+        </div>
+
+        <div>
+            <button>Upload</button>
+            <a href="/show-case-images">See images list</a>
+        </div>
+    </form>
+
+</body>
+
+</html>
